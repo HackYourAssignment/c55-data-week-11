@@ -4,31 +4,33 @@ Document one place you used an LLM during this assignment.
 
 ## The problem
 
-<!-- TODO: describe the specific problem you asked an LLM about.
-     Example: "My Streamlit KPI panel kept re-querying Postgres on every
-     sidebar interaction even though I wrapped run_query in @st.cache_data." -->
+When I tried to start the Streamlit dashboard, it could not connect to Azure PostgreSQL. The terminal reported an invalid SSL mode value.
 
-TODO
+My PostgreSQL connection URL was stored in an ignored .env file, so I needed help investigating the problem without sharing the complete URL or any credentials.
 
 ## The prompt
 
-<!-- TODO: paste the exact prompt you sent to the LLM. -->
-
-TODO
+My Streamlit application cannot connect to Azure PostgreSQL. The terminal reports an invalid SSL mode value. My connection URL is stored in an ignored .env file.
 
 ## The response
 
-<!-- TODO: summarise or paste what the LLM returned. -->
+ChatGPT explained that the error was probably caused by an incorrect SSL setting in the PostgreSQL URL. It advised me to check that the URL in my local .env file ended with:
 
-TODO
+?sslmode=require
 
 ## Reflection
 
-<!-- TODO: what did you change, keep, or discard after reviewing the LLM's answer?
-     Be specific: "I kept the cache_data suggestion but changed ttl from 60 to 300
-     to match the mart's once-a-day refresh cadence." -->
+I checked the connection URL in my .env file and discovered that I had written:
 
-TODO
+?sslmode=requir
+
+The final letter e was missing. I corrected it to:
+
+?sslmode=require
+
+After saving the .env file and restarting Streamlit, the application connected successfully to Azure PostgreSQL and loaded the dashboard.
+
+From this error, I learned to pay closer attention when copying connection URLs and configuration values. Even a small typo can prevent an application from connecting, so I should carefully compare copied values with the original instructions before running the application.
 
 ---
 
