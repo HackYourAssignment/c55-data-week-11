@@ -9,16 +9,21 @@ described in the assignment brief.
 """
 
 import os
+from pathlib import Path
 
 import pandas as pd
 import sqlalchemy
 import streamlit as st
 from dotenv import load_dotenv
 
-load_dotenv()  # reads .env file if present
+load_dotenv(dotenv_path=Path(__file__).resolve().parent / ".env", override=True)
 
-POSTGRES_URL = os.environ["POSTGRES_URL"]
-DB_SCHEMA = os.environ.get("DB_SCHEMA", "dev_yourname")
+POSTGRES_URL = os.environ.get("POSTGRES_URL", "").strip()
+DB_SCHEMA = os.environ.get("DB_SCHEMA", "dev_yourname").strip()
+
+if not POSTGRES_URL or "your-pg-host" in POSTGRES_URL:
+    st.error("POSTGRES_URL is not configured correctly. Update the project .env file with your real database connection string.")
+    st.stop()
 
 st.set_page_config(page_title="NYC Taxi Metrics", layout="wide")
 st.title("NYC Taxi Metrics")
@@ -32,14 +37,17 @@ def run_query(sql: str) -> pd.DataFrame:
 
 
 st.subheader("Headline KPIs")
+KPIs= run_query(f"""
+    SELECT
+        COUNT(*) AS total_trips,
+        AVG(trip_distance) AS avg_trip_distance,
+        AVG(fare_amount / trip_distance) AS avg_fare_per_mile
+    FROM {DB_SCHEMA}.fct_trips
+""").iloc[0]
 
-# TODO: query total trip count, average trip_distance, and average
-# fare_per_mile from {DB_SCHEMA}.fct_trips through run_query(), then
-# render three tiles side by side with st.columns(3) and .metric().
-# This is deliberately not the total-trips/avg-fare/total-revenue trio
-# from the chapter: trip_distance and fare_per_mile are different columns,
-# so copying the chapter's SQL verbatim will not answer this.
-raise NotImplementedError(
-    "TODO: implement the headline KPIs panel (total trips, avg trip "
-    "distance, avg fare per mile) from fct_trips."
-)
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Trips", f"{KPIs['total_trips']:,}")
+col2.metric("Avg Trip Distance (miles)", f"{KPIs['avg_trip_distance']:.2f}")
+col3.metric("Avg Fare per Mile ($)", f"{KPIs['avg_fare_per_mile']:.2f}")
+
+
