@@ -53,8 +53,11 @@ Fill in `week11-streamlit/metric_definitions.md`: a five-field definition (name,
      3) Paste your 5-minute presentation recording link (keep it PRIVATE). -->
 
 - Metabase dashboard (in the **Week 11 Submissions** collection): TODO
-- Screenshots / PDF export: TODO
+https://metabase-hyf.politepebble-abd3ebc2.westeurope.azurecontainerapps.io/dashboard/42-nyc-taxi-analytics-baraah
+- Screenshots / PDF export: TODO Metabase_dashboard_baraah.png 
 - Presentation recording (private, hosted in the Azure `student-submissions` container): TODO
+
+https://hyfstoragedev.blob.core.windows.net/student-submissions/week-11/Baraah.mp4?sp=r&st=2026-07-16T15:33:03Z&se=2026-07-22T23:48:03Z&skoid=8bfd6dc9-8735-4bc5-8362-05ebddd6526b&sktid=07a14c4e-d88c-42f7-83b3-13af7e57ff3d&skt=2026-07-16T15:33:03Z&ske=2026-07-22T23:48:03Z&sks=b&skv=2026-02-06&spr=https&sv=2026-02-06&sr=b&sig=GRcWIO6iheJqLzk0s8zeJNoQLaZaSRw%2FGOD9scBdsYQ%3D
 
 > ⚠️ **Keep the recording private.** It shows your screen and voice. Never make it public and never commit the `.mp4` (git history is forever). Check the frame for passwords, `.env` contents, or connection strings before uploading.
 
