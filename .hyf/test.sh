@@ -88,10 +88,10 @@ pass "Level 2: secrets hygiene ($l2/15 pts)"
 # ── Level 3 (25 pts): Streamlit app content ─────────────────────────────────
 l3=0
 if [[ -f "$app" ]]; then
-  if pygrep "^import sqlalchemy|^from sqlalchemy" "$app"; then
-    l3=$((l3 + 5)); pass "app.py: imports sqlalchemy"
+  if pygrep "^import sqlalchemy|^from sqlalchemy|^import psycopg|^from psycopg" "$app"; then
+    l3=$((l3 + 5)); pass "app.py: imports a Postgres driver (sqlalchemy or psycopg2)"
   else
-    fail "app.py: no sqlalchemy import found"
+    fail "app.py: no sqlalchemy or psycopg2 import found"
   fi
 
   if pygrep "os\.environ|os\.getenv" "$app"; then
@@ -146,7 +146,9 @@ if file_has_content "$defs"; then
     l4=$((l4 + 5)); warn "metric_definitions.md: only $fields_ok/5 fields found"
   fi
 
-  panel_count=$(grep -cE "^### Panel" "$defs" 2>/dev/null || true)
+  # Count any H3 heading as a documented panel, so students who title
+  # entries by metric name rather than "Panel N" still get credit.
+  panel_count=$(grep -cE "^### " "$defs" 2>/dev/null || true)
   if [[ "$panel_count" -ge 4 ]]; then
     l4=$((l4 + 10)); pass "metric_definitions.md: $panel_count panels documented (>=4 expected: 3 Metabase + 1 Streamlit)"
   elif [[ "$panel_count" -ge 2 ]]; then
