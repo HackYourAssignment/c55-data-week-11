@@ -48,13 +48,16 @@ Fill in `week11-streamlit/metric_definitions.md`: a five-field definition (name,
 
 ## My submission
 
-<!-- TODO: 1) Save your Metabase dashboard into the shared "Week 11 Submissions" collection.
-     2) Paste its link below, plus screenshots or a PDF export in this repo.
-     3) Paste your 5-minute presentation recording link (keep it PRIVATE). -->
+- **Metabase dashboard (Week 11 Submissions collection):**
+  https://metabase-hyf.politepebble-abd3ebc2.westeurope.azurecontainerapps.io/dashboard/49-nyc-taxi-analytics-pavel-tisner
 
-- Metabase dashboard (in the **Week 11 Submissions** collection): TODO
-- Screenshots / PDF export: TODO
-- Presentation recording (private, hosted in the Azure `student-submissions` container): TODO
+- **Screenshots / PDF export:**
+  - `docs/Metabase - NYC Taxi Analytics_ Pavel Tisner.pdf`
+  - `docs/streamlit-dashboard.png`
+  - `docs/streamlit-dashboard-filter.png`
+
+- **Presentation recording (private, hosted in the Azure `student-submissions` container:**
+  TODO (will be added after recording)
 
 > ⚠️ **Keep the recording private.** It shows your screen and voice. Never make it public and never commit the `.mp4` (git history is forever). Check the frame for passwords, `.env` contents, or connection strings before uploading.
 
