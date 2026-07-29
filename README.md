@@ -52,9 +52,11 @@ Fill in `week11-streamlit/metric_definitions.md`: a five-field definition (name,
      2) Paste its link below, plus screenshots or a PDF export in this repo.
      3) Paste your 5-minute presentation recording link (keep it PRIVATE). -->
 
-- Metabase dashboard (in the **Week 11 Submissions** collection): TODO
-- Screenshots / PDF export: TODO
-- Presentation recording (private, hosted in the Azure `student-submissions` container): TODO
+- Metabase dashboard (in the **Week 11 Submissions** collection): 
+https://metabase-hyf.politepebble-abd3ebc2.westeurope.azurecontainerapps.io/dashboard/46-nyc-taxi-analytics-hannah
+- Screenshots / PDF export: screenshots are in the docs folder
+- Presentation recording (private, hosted in the Azure `student-submissions` container): 
+https://hyfstoragedev.blob.core.windows.net/student-submissions/week-11/hannahwn.mp4
 
 > ⚠️ **Keep the recording private.** It shows your screen and voice. Never make it public and never commit the `.mp4` (git history is forever). Check the frame for passwords, `.env` contents, or connection strings before uploading.
 
