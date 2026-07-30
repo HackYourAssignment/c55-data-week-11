@@ -3,34 +3,38 @@
 Document one place you used an LLM during this assignment.
 
 ## The problem
-
-<!-- TODO: describe the specific problem you asked an LLM about.
-     Example: "My Streamlit KPI panel kept re-querying Postgres on every
-     sidebar interaction even though I wrapped run_query in @st.cache_data." -->
-
-TODO
+i did not know how to record myself using teams or zoom
 
 ## The prompt
 
-<!-- TODO: paste the exact prompt you sent to the LLM. -->
-
-TODO
+how to record my screen and voice with my computer using teams or zoom
 
 ## The response
+🎥 Recording in Microsoft Teams
+Takeaway: You can record any meeting, even if you're alone, and Teams will capture your screen, microphone, and system audio (if enabled).
 
-<!-- TODO: summarise or paste what the LLM returned. -->
+How to do it
+Open Teams and start a meeting
 
-TODO
+Click Calendar → Meet now, or open an existing meeting.
+
+Join the meeting
+
+Turn on your microphone if you want your voice recorded.
+
+Share your screen
+
+Click Share (the square-with-arrow icon).
+
+Choose Screen, Window, or PowerPoint Live.
+
+Start recording
+
+Click More (···) → Start recording.
 
 ## Reflection
 
-<!-- TODO: what did you change, keep, or discard after reviewing the LLM's answer?
-     Be specific: "I kept the cache_data suggestion but changed ttl from 60 to 300
-     to match the mart's once-a-day refresh cadence." -->
-
-TODO
-
----
+I need to join a meeting even if by myself there is no other way of recording and need to upgrade to premium so i switched to OBS.
 
 > Remember: never paste real connection strings, passwords, or PII into an LLM.
 > The NYC TLC dataset is public so sample rows are safe here, but practise the habit.
