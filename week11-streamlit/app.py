@@ -30,16 +30,116 @@ def run_query(sql: str) -> pd.DataFrame:
     with engine.connect() as conn:
         return pd.read_sql(sql, conn)
 
+# Payment-type filter
+payment_types_df = run_query(
+    f"""
+    SELECT DISTINCT payment_type_label
+    FROM {DB_SCHEMA}.fct_trips
+    WHERE payment_type_label IS NOT NULL
+    ORDER BY payment_type_label
+    """
+)
 
+payment_types = ["All"] + payment_types_df["payment_type_label"].tolist()
+
+selected_payment_type = st.sidebar.selectbox(
+    "Payment type",
+    payment_types,
+)
+
+if selected_payment_type == "All":
+    where_clause = ""
+else:
+    safe_payment_type = selected_payment_type.replace("'", "''")
+    where_clause = (
+        "WHERE payment_type_label = "
+        f"'{safe_payment_type}'"
+    )
+
+
+# Panel 1: Headline KPIs
 st.subheader("Headline KPIs")
 
-# TODO: query total trip count, average trip_distance, and average
-# fare_per_mile from {DB_SCHEMA}.fct_trips through run_query(), then
-# render three tiles side by side with st.columns(3) and .metric().
-# This is deliberately not the total-trips/avg-fare/total-revenue trio
-# from the chapter: trip_distance and fare_per_mile are different columns,
-# so copying the chapter's SQL verbatim will not answer this.
-raise NotImplementedError(
-    "TODO: implement the headline KPIs panel (total trips, avg trip "
-    "distance, avg fare per mile) from fct_trips."
+kpi_df = run_query(
+    f"""
+    SELECT
+        COUNT(*) AS total_trips,
+        AVG(trip_distance) AS avg_trip_distance,
+        AVG(fare_per_mile) AS avg_fare_per_mile
+    FROM {DB_SCHEMA}.fct_trips
+    {where_clause}
+    """
+)
+
+kpis = kpi_df.iloc[0]
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric(
+    "Total trips",
+    f"{int(kpis['total_trips']):,}",
+)
+
+col2.metric(
+    "Average trip distance",
+    f"{kpis['avg_trip_distance']:.2f} miles",
+)
+
+col3.metric(
+    "Average fare per mile",
+    f"${kpis['avg_fare_per_mile']:.2f}",
+)
+
+
+# Panel 2: Trip count by hour
+st.subheader("Trip count by hour of day")
+
+hourly_trips = run_query(
+    f"""
+    SELECT
+        EXTRACT(HOUR FROM pickup_datetime) AS pickup_hour,
+        COUNT(*) AS trip_count
+    FROM {DB_SCHEMA}.fct_trips
+    {where_clause}
+    GROUP BY EXTRACT(HOUR FROM pickup_datetime)
+    ORDER BY pickup_hour
+    """
+)
+
+st.line_chart(
+    hourly_trips,
+    x="pickup_hour",
+    y="trip_count",
+    x_label="Pickup hour (0–23)",
+    y_label="Number of trips",
+)
+
+
+# Panel 3: Data freshness
+st.subheader("Data freshness")
+
+freshness_df = run_query(
+    f"""
+    SELECT
+        COUNT(*) AS row_count,
+        MAX(pickup_datetime) AS latest_pickup_datetime
+    FROM {DB_SCHEMA}.fct_trips
+    {where_clause}
+    """
+)
+
+freshness = freshness_df.iloc[0]
+
+fresh_col1, fresh_col2 = st.columns(2)
+
+fresh_col1.metric(
+    "Row count",
+    f"{int(freshness['row_count']):,}",
+)
+
+fresh_col2.metric(
+    "Latest pickup datetime",
+    freshness["latest_pickup_datetime"].strftime(
+        "%Y-%m-%d %H:%M:%S"
+    ),
 )

@@ -52,9 +52,9 @@ Fill in `week11-streamlit/metric_definitions.md`: a five-field definition (name,
      2) Paste its link below, plus screenshots or a PDF export in this repo.
      3) Paste your 5-minute presentation recording link (keep it PRIVATE). -->
 
-- Metabase dashboard (in the **Week 11 Submissions** collection): TODO
-- Screenshots / PDF export: TODO
-- Presentation recording (private, hosted in the Azure `student-submissions` container): TODO
+- Metabase dashboard (in the **Week 11 Submissions** collection): https://metabase-hyf.politepebble-abd3ebc2.westeurope.azurecontainerapps.io/dashboard/48-nyc-taxi-analytics-mohammed-alfakih
+- Screenshots / PDF export: [Metabase](screenshots/metabase-dashboard.png), [Streamlit](screenshots/streamlit-dashboard.png)
+- Presentation recording (private, hosted in the Azure `student-submissions` container): https://hyfstoragedev.blob.core.windows.net/student-submissions/week-11/mohammed-alfakih.mp4
 
 > ⚠️ **Keep the recording private.** It shows your screen and voice. Never make it public and never commit the `.mp4` (git history is forever). Check the frame for passwords, `.env` contents, or connection strings before uploading.
 
@@ -66,7 +66,7 @@ To upload by hand, [open the `hyfstoragedev` Storage browser in the Azure Portal
 
 Your pull request should review itself: a reviewer should be able to understand and check it without asking you anything. When you open the PR, GitHub loads a template (`.github/PULL_REQUEST_TEMPLATE.md`) into the description, fill in every section. Two things carry the most weight:
 
-- **Reproducible run instructions.** The Streamlit steps above must work from a clean clone against the reviewer's *own* Postgres: `uv sync`, copy `.env.example` to `.env`, set their own `POSTGRES_URL` (with `?sslmode=require`) and `DB_SCHEMA`, then `uv run streamlit run app.py`. Name every prerequisite, including your own `fct_trips` mart from Week 10. If a step only works on your machine, it is not reproducible.
+- **Reproducible run instructions.** The Streamlit steps above must work from a clean clone against the reviewer's _own_ Postgres: `uv sync`, copy `.env.example` to `.env`, set their own `POSTGRES_URL` (with `?sslmode=require`) and `DB_SCHEMA`, then `uv run streamlit run app.py`. Name every prerequisite, including your own `fct_trips` mart from Week 10. If a step only works on your machine, it is not reproducible.
 - **Proof for what a reviewer cannot run.** A reviewer cannot open your private `dev_<name>` schema or your Metabase Questions, so commit screenshots (or a PDF export) of your Metabase dashboard and your running Streamlit app. Screenshots are how you prove "it runs on my data."
 
 See "Package your pull request for review" in the Week 11 Assignment chapter for the full rationale.
