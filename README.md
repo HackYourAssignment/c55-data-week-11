@@ -48,13 +48,10 @@ Fill in `week11-streamlit/metric_definitions.md`: a five-field definition (name,
 
 ## My submission
 
-<!-- TODO: 1) Save your Metabase dashboard into the shared "Week 11 Submissions" collection.
-     2) Paste its link below, plus screenshots or a PDF export in this repo.
-     3) Paste your 5-minute presentation recording link (keep it PRIVATE). -->
+1) Metabase dashboard : https://metabase-hyf.politepebble-abd3ebc2.westeurope.azurecontainerapps.io/dashboard/45-nyc-taxi-analytics-bader
+     2) PDF export and screenshots: In docs folder
+     3) Presentation recording: https://hyfstoragedev.blob.core.windows.net/student-submissions/week-11/mohamad-bader-almsaddi-alzin.mp4?sp=r&st=2026-07-16T19:27:11Z&se=2026-07-23T03:42:11Z&skoid=93f1bc1c-033f-4ed7-bcef-086bdff0302a&sktid=07a14c4e-d88c-42f7-83b3-13af7e57ff3d&skt=2026-07-16T19:27:11Z&ske=2026-07-23T03:42:11Z&sks=b&skv=2026-02-06&spr=https&sv=2026-02-06&sr=b&sig=KhzhGPWxB7ZdMpJI15KGTaf%2BrCGivOwB5wyfLzDojIA%3D.
 
-- Metabase dashboard (in the **Week 11 Submissions** collection): TODO
-- Screenshots / PDF export: TODO
-- Presentation recording (private, hosted in the Azure `student-submissions` container): TODO
 
 > ⚠️ **Keep the recording private.** It shows your screen and voice. Never make it public and never commit the `.mp4` (git history is forever). Check the frame for passwords, `.env` contents, or connection strings before uploading.
 
